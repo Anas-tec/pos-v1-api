@@ -1,9 +1,17 @@
 // backend/src/config/env.js
 require('dotenv').config();
 
+const rawApiPrefix = process.env.API_PREFIX !== undefined ? process.env.API_PREFIX.trim() : '';
+let apiPrefix = '';
+if (rawApiPrefix && rawApiPrefix !== '/') {
+  apiPrefix = rawApiPrefix.startsWith('/') ? rawApiPrefix : `/${rawApiPrefix}`;
+  apiPrefix = apiPrefix.endsWith('/') ? apiPrefix.slice(0, -1) : apiPrefix;
+}
+
 const env = {
   PORT: process.env.PORT || 5000,
   NODE_ENV: process.env.NODE_ENV || 'development',
+  API_PREFIX: apiPrefix,
   DATABASE_URL: process.env.DATABASE_URL,
   DB_HOST: process.env.DB_HOST || process.env.PGHOST || 'localhost',
   DB_PORT: parseInt(process.env.DB_PORT || process.env.PGPORT || '5432', 10),

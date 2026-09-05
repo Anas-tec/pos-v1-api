@@ -4,9 +4,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/authMiddleware');
 
-router.use(authMiddleware);
-
-// GET /api/profile
-router.get('/profile', userController.getProfile);
+// GET /profile
+router.get('/profile', authMiddleware, userController.getProfile);
 
 module.exports = router;

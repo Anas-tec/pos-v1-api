@@ -6,9 +6,9 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 router.use(authMiddleware);
 
-// GET  /api/invoices
-// POST /api/invoices
-// GET  /api/invoices/:id
+// GET  ${API_PREFIX}/invoices
+// POST ${API_PREFIX}/invoices
+// GET  ${API_PREFIX}/invoices/:id
 router.get('/', invoiceController.getInvoices);
 router.post('/', invoiceController.createInvoice);
 router.get('/:id', invoiceController.getInvoiceById);

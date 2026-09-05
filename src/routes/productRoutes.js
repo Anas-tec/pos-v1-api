@@ -16,8 +16,8 @@ router.patch('/:id/active', productController.toggleActive);
 router.delete('/:id', productController.deleteProduct);
 
 // Nested product pricing routes as per spec:
-// GET  /api/products/:productId/prices
-// POST /api/products/:productId/prices
+// GET  ${API_PREFIX}/products/:productId/prices
+// POST ${API_PREFIX}/products/:productId/prices
 router.get('/:productId/prices', pricingController.getPricingHistory);
 router.post('/:productId/prices', pricingController.addPrice);
 

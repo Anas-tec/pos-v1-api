@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const env = require('./config/env');
 const routes = require('./routes');
 const errorHandler = require('./middleware/errorHandler');
 const { sendError, sendSuccess } = require('./utils/responseFormatter');
@@ -21,12 +22,19 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // Health Check
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
   return sendSuccess(res, { status: 'healthy', timestamp: new Date().toISOString() });
 });
 
+if (env.API_PREFIX) {
+  app.get(`${env.API_PREFIX}/health`, (req, res) => {
+    return sendSuccess(res, { status: 'healthy', timestamp: new Date().toISOString() });
+  });
+}
+
 // API Routes
-app.use('/api', routes);
+const apiMountPath = env.API_PREFIX || '/';
+app.use(apiMountPath, routes);
 
 // 404 Route Not Found
 app.use((req, res) => {

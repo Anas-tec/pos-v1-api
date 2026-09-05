@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 router.use(authMiddleware);
 
-// PUT /api/product-pricings/:id
+// PUT ${API_PREFIX}/product-pricings/:id
 router.put('/:id', pricingController.updatePricing);
 
 module.exports = router;

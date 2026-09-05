@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 router.use(authMiddleware);
 
-// GET /api/dashboard
+// GET ${API_PREFIX}/dashboard
 router.get('/', dashboardController.getMetrics);
 
 module.exports = router;

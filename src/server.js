@@ -8,6 +8,7 @@ const PORT = env.PORT || 5000;
 const server = app.listen(PORT, async () => {
   console.log(`🚀 POS V1 Backend API running on http://localhost:${PORT}`);
   console.log(`🌍 Environment: ${env.NODE_ENV}`);
+  console.log(`🔗 API Base Path: http://localhost:${PORT}${env.API_PREFIX || '/'}`);
 
   // Test database connection on startup
   try {
